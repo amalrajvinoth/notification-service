@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: it.ozimov:embedded-redis:0.7.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.ozimov/embedded-redis/0.7.0/a1a24ee7cfa1d772f3f9a81b8dc5acfbc58b977e/embedded-redis-0.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.ozimov/embedded-redis/0.7.0/212847ad97049a34cd16ac9b6f57a9b8eb84d0da/embedded-redis-0.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

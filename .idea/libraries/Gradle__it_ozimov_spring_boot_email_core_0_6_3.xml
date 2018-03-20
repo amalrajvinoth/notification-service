@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: it.ozimov:spring-boot-email-core:0.6.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.ozimov/spring-boot-email-core/0.6.3/4ee59eac488a8481e990b8db3fde788786e40295/spring-boot-email-core-0.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/it.ozimov/spring-boot-email-core/0.6.3/759a52f390ec6c8085f30ee72a609721d916e1be/spring-boot-email-core-0.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

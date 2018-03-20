@@ -1,0 +1,89 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url "http://repo.spring.io/libs-snapshot" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+def version = '1.0'
+def appName = "Generic Notification System"
+def jacksonVersion = '2.9.4'
+def log4j2Version = '2.10.0'
+def slf4Version = '1.8.0-beta1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+configurations {
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-log4j2')
+
+    compile("org.springframework.boot:spring-boot-starter-tomcat")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("io.springfox:springfox-swagger2:2.6.1")
+    compile('io.springfox:springfox-swagger-ui:2.6.1')
+    
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: jacksonVersion
+    compile group: 'org.codehaus.woodstox', name: 'stax2-api', version: '4.0.0'
+
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4j2Version
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4j2Version
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: log4j2Version
+    compile group: 'org.slf4j', name: 'slf4j-api', version: slf4Version
+    compile group: 'org.slf4j', name: 'jul-to-slf4j', version: slf4Version
+
+    compile 'com.ullink.slack:simpleslackapi:1.2.0'
+    compile 'it.ozimov:spring-boot-email-core:0.6.3'
+
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "cglib:cglib-nodep:3.1"
+}
+
+task stage {
+  dependsOn build
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+        //showStandardStreams = true
+        events "standardError", "passed", "skipped", "failed"
+        afterSuite { desc, result ->
+            // Match the outermost suite
+            if (!desc.parent) {
+                println "Tests run: ${result.testCount}, Failures: ${result.failedTestCount}, Skipped: ${result.skippedTestCount}"
+            }
+        }
+    }
+}

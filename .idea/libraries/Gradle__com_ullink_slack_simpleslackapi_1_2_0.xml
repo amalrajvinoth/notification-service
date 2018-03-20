@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ullink.slack:simpleslackapi:1.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ullink.slack/simpleslackapi/1.2.0/baa277d265c87ff5a5fba318cd45a0f3b0f8d6ff/simpleslackapi-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ullink.slack/simpleslackapi/1.2.0/af827d0da9428b23aeadc5471091cf34532d3f31/simpleslackapi-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
