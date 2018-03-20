@@ -33,14 +33,17 @@ URL: `http://<HOST>/notifier/{channelType}/notify`
 This sends given message to a specified channel like slack or email.
 Where the `channelType` is slack or email.
 
-e.g: `http://localhost:8080/api/v1.0/notifier/{channelType}/notify`
-with body `{  
+e.g: `http://localhost:8080/api/v1.0/notifier/{channelType}/notify`   
+with body as:
+```javascript 
+{  
    "body": "Body of the message",  
    "from": "sender@gmail.com",  
    "subject": "Notification Service Test Subject",  
    "to": "receiver@gmail.com"  
- }`
- 
+ }
+```
+
 **API 2: Notify All**
 
 URL: `http://<HOST>/notifier/notifyAll`
@@ -48,12 +51,15 @@ URL: `http://<HOST>/notifier/notifyAll`
 This sends given message to all configured channels like slack and email.
 
 e.g: `http://localhost:8080/api/v1.0/notifier/notifyAll`
-with body `{  
+with body as: 
+```javascript 
+{  
    "body": "Body of the message",  
    "from": "sender@gmail.com",  
    "subject": "Notification Service Test Subject",  
    "to": "receiver@gmail.com"  
- }`
+}
+```
  
 ## Tests
 
