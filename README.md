@@ -66,7 +66,7 @@ with body as:
 Run `gradlew test` from console.
 
 ## Settings
-1. Make sure all email and slack properties are configured properly in `application.properties```
+1. Make sure all email and slack properties are configured properly in `application.properties`.
 2. If GMail ia configured as your mail service then set `Allow less secure apps = ON` in Sing-in & Security of your google account to send message properly .
 
 
