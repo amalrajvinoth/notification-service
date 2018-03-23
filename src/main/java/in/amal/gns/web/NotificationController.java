@@ -1,8 +1,10 @@
 package in.amal.gns.web;
 
+import in.amal.gns.exception.BadRequest;
 import in.amal.gns.model.ChannelType;
 import in.amal.gns.model.Message;
-import in.amal.gns.service.ChannelFactory;
+import in.amal.gns.service.NotificationService;
+import in.amal.gns.util.EmailValidator;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -20,19 +22,31 @@ public class NotificationController {
     private static final Logger LOG = LogManager.getLogger(NotificationController.class);
 
     @Autowired
-    private ChannelFactory factory;
+    private NotificationService service;
+
+    @Autowired
+    EmailValidator emailValidator;
 
     @ApiOperation(value = "Notify the given message to given channelType.")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Not Found")})
     @PostMapping("/notify/{channelType}")
-    public void notify(@PathVariable ChannelType channelType, @RequestBody Message msg) {
-        factory.get(channelType).notify(msg);
+    public long notify(@PathVariable ChannelType channelType, @RequestBody Message msg) {
+        if(ChannelType.email == channelType) {
+            if(!emailValidator.isValid(msg.getFrom())) {
+                throw new BadRequest("From Address", msg.getFrom());
+            }
+            if(!emailValidator.isValid(msg.getTo())) {
+                throw new BadRequest("To Address", msg.getFrom());
+            }
+        }
+
+        return service.notify(channelType, msg);
     }
 
     @ApiOperation(value = "Notify the given message to all channels like Slack and email.")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Not Found")})
     @PostMapping("/notifyAll")
-    public void notifyAll(@RequestBody Message msg) {
-        factory.notifyAll(msg);
+    public long notifyAll(@RequestBody Message msg) {
+        return service.notifyAll(msg);
     }
 }
